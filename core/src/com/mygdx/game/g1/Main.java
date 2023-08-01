@@ -4,13 +4,13 @@ import com.mygdx.game.g1.units.*;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Main {
-    public static ArrayList<BaseUnit> team_red = new ArrayList<>();
-    public static ArrayList<BaseUnit> team_green = new ArrayList<>();
-    public static ArrayList<BaseUnit> teamAll = new ArrayList<>();
-    public static void main(String[] args) {
+    public ArrayList<BaseUnit> team_red = new ArrayList<>();
+    public ArrayList<BaseUnit> team_green = new ArrayList<>();
+    public ArrayList<BaseUnit> teamAll = new ArrayList<>();
+
+    public void main() {
         int teamCount = 10;
         Random rand = new Random();
         System.out.println();
@@ -53,37 +53,44 @@ public class Main {
             }
             System.out.println(team_green.get(j).getInfo());
         }
+
         teamAll.addAll(team_green);
         teamAll.addAll(team_red);
         teamAll.sort(BaseUnit::compareTo);
 
-        Scanner in = new Scanner(System.in);
-        while (true){
-            View.view();
-            in.nextLine();
-            for (BaseUnit unit : teamAll){
-                if (team_green.contains(unit)){
+        //Scanner in = new Scanner(System.in);
+        // while (true){
+        //View.view();
+        //in.nextLine();
+        public boolean run () {
+            for (BaseUnit unit : teamAll) {
+                if (team_green.contains(unit)) {
                     unit.step(team_green, team_red);
-                }else unit.step(team_red, team_green);
+                } else unit.step(team_red, team_green);
             }
-            if (isTeamDie(team_green)){
+            if (isTeamDie(team_green)) {
                 System.out.println("Команда красных выиграла");
                 break;
             }
-            if (isTeamDie(team_red)){
+            if (isTeamDie(team_red)) {
                 System.out.println("Команда зелёных выиграла");
                 break;
             }
-        }
-    }
+            //}
 
-    private static String getName(){
-        String s = String.valueOf(Name.values()[new Random().nextInt(Name.values().length)]);
-        return s;
-    }
-    static boolean isTeamDie(ArrayList<BaseUnit> team){
-        for (BaseUnit unit: team){
-            if (!unit.die()) return false;
-        } return true;
+
+            private static String getName () {
+                String s = String.valueOf(Name.values()[new Random().nextInt(Name.values().length)]);
+                return s;
+            }
+
+
+            static boolean isTeamDie (ArrayList < BaseUnit > team) {
+                for (BaseUnit unit : team) {
+                    if (!unit.die()) return false;
+                }
+                return true;
+            }
+        }
     }
 }
