@@ -54,6 +54,11 @@ public class Main {
             System.out.println(team_green.get(j).getInfo());
         }
 
+        private static String getName () {
+            String s = String.valueOf(Name.values()[new Random().nextInt(Name.values().length)]);
+            return s;
+        }
+
         teamAll.addAll(team_green);
         teamAll.addAll(team_red);
         teamAll.sort(BaseUnit::compareTo);
@@ -62,35 +67,34 @@ public class Main {
         // while (true){
         //View.view();
         //in.nextLine();
-        public boolean run () {
-            for (BaseUnit unit : teamAll) {
-                if (team_green.contains(unit)) {
-                    unit.step(team_green, team_red);
-                } else unit.step(team_red, team_green);
-            }
-            if (isTeamDie(team_green)) {
-                System.out.println("Команда красных выиграла");
-                break;
-            }
-            if (isTeamDie(team_red)) {
-                System.out.println("Команда зелёных выиграла");
-                break;
-            }
-            //}
+    public void run() {
+        for (BaseUnit unit : teamAll) {
+            if (team_green.contains(unit)) {
+                unit.step(team_green, team_red);
+            } else unit.step(team_red, team_green);
+        }
+        if (isTeamDie(team_green)) {
+            System.out.println("Команда красных выиграла");
+            break;
+        }
+        if (isTeamDie(team_red)) {
+            System.out.println("Команда зелёных выиграла");
+            break;
+        }
+    }
 
 
-            private static String getName () {
-                String s = String.valueOf(Name.values()[new Random().nextInt(Name.values().length)]);
-                return s;
-            }
 
 
-            static boolean isTeamDie (ArrayList < BaseUnit > team) {
+
+        static boolean isTeamDie (ArrayList < BaseUnit > team) {
                 for (BaseUnit unit : team) {
                     if (!unit.die()) return false;
                 }
                 return true;
             }
-        }
     }
+
+
+
 }
