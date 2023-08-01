@@ -58,11 +58,7 @@ public class Main {
         teamAll.addAll(team_green);
         teamAll.addAll(team_red);
         teamAll.sort(BaseUnit::compareTo);
-
-        //Scanner in = new Scanner(System.in);
-        // while (true){
-        //View.view();
-    }    //in.nextLine();
+    }
     public void run() {
             for (BaseUnit unit : teamAll) {
                 if (team_green.contains(unit)) {
@@ -75,12 +71,9 @@ public class Main {
             }
             if (isTeamDie(team_red)) {
                 System.out.println("Команда зелёных выиграла");
-                return;
-         }
+            }
 
     }
-
-
 
     public String getName () {
         String s = String.valueOf(Name.values()[new Random().nextInt(Name.values().length)]);

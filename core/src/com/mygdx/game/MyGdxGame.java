@@ -64,14 +64,15 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.draw(fon, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		for (BaseUnit unit: game.teamAll){
 			if (!unit.isAlive) continue;
-			int mx=1;
-			if (unit instanceof ArbalesterUnit) batch.draw(crossBowMan, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
-			if (unit instanceof MagicianUnit) batch.draw(mage, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
-			if (unit instanceof MonkUnit) batch.draw(monk, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
-			if (unit instanceof CountrymanUnit) batch.draw(peasant, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
-			if (unit instanceof RobberUnit) batch.draw(rouge, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
-			if (unit instanceof SharpshooterUnit) batch.draw(sniper, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
-			if (unit instanceof SpearmanUnit) batch.draw(spearMan, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
+			int mx = 1;
+			if (game.team_green.contains(unit)) mx = -1;
+			if (unit instanceof ArbalesterUnit) batch.draw(crossBowMan, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky, crossBowMan.getWidth()*mx, crossBowMan.getHeight());
+			if (unit instanceof MagicianUnit) batch.draw(mage, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky, mage.getWidth()*mx, mage.getHeight());
+			if (unit instanceof MonkUnit) batch.draw(monk, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky, monk.getWidth()*mx, monk.getHeight());
+			if (unit instanceof CountrymanUnit) batch.draw(peasant, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky, peasant.getWidth()*mx, peasant.getHeight());
+			if (unit instanceof RobberUnit) batch.draw(rouge, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky, rouge.getWidth()*mx, rouge.getHeight());
+			if (unit instanceof SharpshooterUnit) batch.draw(sniper, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky, sniper.getWidth()*mx, sniper.getHeight());
+			if (unit instanceof SpearmanUnit) batch.draw(spearMan, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky, spearMan.getWidth()*mx, spearMan.getHeight());
 		}
 		batch.draw(crossBowMan, 0, 0);
 		batch.draw(mage, 0, 0);
