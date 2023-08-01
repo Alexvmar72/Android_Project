@@ -62,8 +62,8 @@ public class Main {
         //Scanner in = new Scanner(System.in);
         // while (true){
         //View.view();
-        //in.nextLine();
-        public boolean run () {
+    }    //in.nextLine();
+    public void run() {
             for (BaseUnit unit : teamAll) {
                 if (team_green.contains(unit)) {
                     unit.step(team_green, team_red);
@@ -71,15 +71,16 @@ public class Main {
             }
             if (isTeamDie(team_green)) {
                 System.out.println("Команда красных выиграла");
-                break;
+                return;
             }
             if (isTeamDie(team_red)) {
                 System.out.println("Команда зелёных выиграла");
-                break;
-            }
-        }
+                return;
+         }
 
     }
+
+
 
     public String getName () {
         String s = String.valueOf(Name.values()[new Random().nextInt(Name.values().length)]);

@@ -23,6 +23,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	Texture fon, crossBowMan, mage, monk, peasant, rouge, sniper, spearMan;
 	Main game;
 	Music music;
+	private boolean clk = true;
 	
 	@Override
 	public void create () {
@@ -46,21 +47,31 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		game.run();
+
+		if (Gdx.input.isTouched() & clk) {
+			clk = false;
+			game.run();
+		}
+
+		if (!Gdx.input.isTouched() & !clk) {
+			clk = true;
+		}
+
 		ScreenUtils.clear(1, 0, 0, 1);
 		int kx=Gdx.graphics.getWidth()/12;
 		int ky=Gdx.graphics.getHeight()/15;
 		batch.begin();
 		batch.draw(fon, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		for (BaseUnit unit: game.teamAll){
+			if (!unit.isAlive) continue;
 			int mx=1;
-			if (unit instanceof ArbalesterUnit) batch.draw(crossBowMan, unit.getCoords()[0]*kx*mx,unit.getCoords()[1]*ky);
-			if (unit instanceof MagicianUnit) batch.draw(mage, unit.getCoords()[0]*kx*mx,unit.getCoords()[1]*ky);
-			if (unit instanceof MonkUnit) batch.draw(monk, unit.getCoords()[0]*kx*mx,unit.getCoords()[1]*ky);
-			if (unit instanceof CountrymanUnit) batch.draw(peasant, unit.getCoords()[0]*kx*mx,unit.getCoords()[1]*ky);
-			if (unit instanceof RobberUnit) batch.draw(rouge, unit.getCoords()[0]*kx*mx,unit.getCoords()[1]*ky);
-			if (unit instanceof SharpshooterUnit) batch.draw(sniper, unit.getCoords()[0]*kx*mx,unit.getCoords()[1]*ky);
-			if (unit instanceof SpearmanUnit) batch.draw(spearMan, unit.getCoords()[0]*kx*mx,unit.getCoords()[1]*ky);
+			if (unit instanceof ArbalesterUnit) batch.draw(crossBowMan, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
+			if (unit instanceof MagicianUnit) batch.draw(mage, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
+			if (unit instanceof MonkUnit) batch.draw(monk, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
+			if (unit instanceof CountrymanUnit) batch.draw(peasant, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
+			if (unit instanceof RobberUnit) batch.draw(rouge, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
+			if (unit instanceof SharpshooterUnit) batch.draw(sniper, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
+			if (unit instanceof SpearmanUnit) batch.draw(spearMan, unit.getCoords()[0]*kx,unit.getCoords()[1]*ky);
 		}
 		batch.draw(crossBowMan, 0, 0);
 		batch.draw(mage, 0, 0);
