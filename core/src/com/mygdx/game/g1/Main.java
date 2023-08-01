@@ -54,7 +54,7 @@ public class Main {
             System.out.println(team_green.get(j).getInfo());
         }
 
-        private static String getName () {
+        public String getName () {
             String s = String.valueOf(Name.values()[new Random().nextInt(Name.values().length)]);
             return s;
         }
